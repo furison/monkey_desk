@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket: {{ ticket.id }}{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col">
+    <h1>Ticket: {{ ticket.id }}</h1>
+    <h2>{{ ticket.subject }}</h2>
+
+    <table class="table">
+        <tr>
+            <th>Subject</th>
+            <td>{{ ticket.subject }}</td>
+            <th>Date Submitted</th>
+            <td>{{ ticket.dateSubmitted|date }}</td>
+        </tr>
+        <tr>
+            <th>Submitted By</th>   
+            <td>{{ ticket.submitterId }}</td>
+            <th>Assigned To</th>
+            <td>{{ ticket.assignedTo ? ticket.assignedTo : 'None' }}</td>
+        </tr>
+        <tr>
+            <th>Priority</th>
+            <td>{{ ticket.priority }}</td>
+            <th>Status</th>
+            <td>{{ ticket.status }}</td>
+        </tr>
+    </table>
+    </div>
+</div>
+<hr>
+{% for response in ticket.ticketResponses %}
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <h5 class="card-title">{{ response.subject }} from {{ response.submitter}} ({ response.dateSubmitted|date })</h5>
+                <p class="card-text">{{ response.body|raw }}</p>S
+            </div><!-- end .card -->
+        </div><!-- end .col -->
+    </div>
+{% endfor %}
+
+{% endblock %}

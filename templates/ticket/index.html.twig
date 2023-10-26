@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tickets: {{ queue }}{% endblock %}
+
+{% block body %}
+
+<div class="wrapper">
+    <h1>Tickets: {{ queue }}</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Date created</th>
+            <th>Subject</th>
+            <th>Submitter</th>
+            <th>Assigned to</th>
+            <th>Status</th>
+        </tr>
+    {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.id }}</td>
+            <td>{{ ticket.dateSubmitted|date }}</td>
+            <td><a href="{{ path('app_ticket', {'id': ticket.id})}}">{{ ticket.subject }}</a></td>
+            <td>{{ ticket.submitterId }}</td>
+            <td>{{ ticket.assignedTo }}</td>
+            <td>{{ ticket.status }}</td>
+        </tr>
+    {% endfor %}
+    {#repeat headers?#}
+    </table>
+    
+</div>
+{% endblock %}
