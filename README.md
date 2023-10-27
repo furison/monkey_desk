@@ -1,2 +1,2 @@
 # monkey_desk
-Online helpdesk system written using Symfony
+Online help-desk system written using Symfony
