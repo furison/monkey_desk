@@ -49,5 +49,17 @@
         </div><!-- end .col -->
     </div>
 {% endfor %}
-form
+<hr>
+<div class="row bg-light">
+    <div class="col">
+        <h4>Reply to ticket</h4>
+    </div>
+</div>
+<div class="row bg-light">
+    <div class="col">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+</div>
 {% endblock %}

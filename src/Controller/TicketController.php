@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Ticket;
+use App\Form\ReplyTicketType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,8 +36,11 @@ class TicketController extends AbstractController
             throw $this->createNotFoundException('Cannot find ticket id '. $id);
         }
 
+        $form = $this->createForm(ReplyTicketType::class, null, ['subject' => $ticket->getSubject()]);
+
         return $this->render('ticket/ticket.html.twig', [
             'ticket' => $ticket,
+            'form'   => $form->createView(),
         ]);
     }
 }
