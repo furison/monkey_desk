@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TicketController extends AbstractController
 {
-    #[Route('/tickets', name: 'app_tickets')]
+    #[Route('/agent/tickets', name: 'app_tickets')]
     public function index(EntityManagerInterface $em): Response
     {
         $queue = 'open';
@@ -24,12 +24,16 @@ class TicketController extends AbstractController
         ]);
     }
 
-    #[Route('/tickets/{id}', name: 'app_ticket')]
+    #[Route('/agent/tickets/{id}', name: 'app_ticket')]
     public function ticket(EntityManagerInterface $em, $id): Response
     {
         $repo = $em->getRepository(Ticket::class);
 
         $ticket = $repo->find($id);
+
+        if (!$ticket) {
+            throw $this->createNotFoundException('Cannot find ticket id '. $id);
+        }
 
         return $this->render('ticket/ticket.html.twig', [
             'ticket' => $ticket,
