@@ -35,8 +35,9 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <h5 class="card-title">{{ response.subject }} from {{ response.submitter}} ({ response.dateSubmitted|date })</h5>
-                <p class="card-text">{{ response.body|raw }}</p>S
+                <h5 class="card-title">{{ response.subject }} from {{ response.submitter }} <small>({{ response.dateSubmitted|date }})</small></h5>
+                <hr>
+                <span class="card-text">{{ response.body|raw }}</span>
             </div><!-- end .card -->
         </div><!-- end .col -->
     </div>

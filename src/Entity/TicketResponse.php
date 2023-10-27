@@ -33,8 +33,8 @@ class TicketResponse
     #[ORM\Column(length: 255)]
     private ?string $submitter = null;
 
-    // #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    // private ?\DateTimeInterface $dateSubmitted = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateSubmitted = null;
 
     public function getId(): ?int
     {
