@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% set responseClass = {'response': ' w-75 border-primary', 'reply':' ps-5 border-info', 'note': ' ps-5 border-dark'} %}
 
 {% block title %}Ticket: {{ ticket.id }}{% endblock %}
 
@@ -36,14 +37,17 @@
 {% for response in ticket.ticketResponses %}
     <div class="row">
         <div class="col">
-            <div class="card">
-                <h5 class="card-title">{{ response.subject }} from {{ response.submitter.fullname }} <small>({{ response.dateSubmitted|date }})</small></h5>
-                <hr>
-                <span class="card-text">{{ response.body|raw }}</span>
+            <div class="card mb-3{{ responseClass[response.type] }}">
+                <div class="card-header">
+                    <h5>{{ response.subject }}</h5>
+                    {{ response.submitter.fullname }} @ {{ response.dateSubmitted|date }}
+                </div>
+                <div class="card-body">
+                    <span class="card-text">{{ response.body|raw }}</span>
+                </div>
             </div><!-- end .card -->
         </div><!-- end .col -->
     </div>
-<br>
 {% endfor %}
 form
 {% endblock %}
