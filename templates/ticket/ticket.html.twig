@@ -5,8 +5,10 @@
 {% block body %}
 <div class="row">
     <div class="col">
-    <h1>Ticket: {{ ticket.id }}</h1>
-    <h2>{{ ticket.subject }}</h2>
+        <div class="jumbotron">
+            <h1>Ticket: {{ ticket.id }}</h1>
+            <h2>{{ ticket.subject }}</h2>
+        </div>
 
     <table class="table">
         <tr>
@@ -17,7 +19,7 @@
         </tr>
         <tr>
             <th>Submitted By</th>   
-            <td>{{ ticket.submitterId }}</td>
+            <td>{{ ticket.submitter.fullname }} ({{ ticket.submitter.emailAddress }})</td>
             <th>Assigned To</th>
             <td>{{ ticket.assignedTo ? ticket.assignedTo : 'None' }}</td>
         </tr>
@@ -35,12 +37,13 @@
     <div class="row">
         <div class="col">
             <div class="card">
-                <h5 class="card-title">{{ response.subject }} from {{ response.submitter }} <small>({{ response.dateSubmitted|date }})</small></h5>
+                <h5 class="card-title">{{ response.subject }} from {{ response.submitter.fullname }} <small>({{ response.dateSubmitted|date }})</small></h5>
                 <hr>
                 <span class="card-text">{{ response.body|raw }}</span>
             </div><!-- end .card -->
         </div><!-- end .col -->
     </div>
+<br>
 {% endfor %}
-
+form
 {% endblock %}

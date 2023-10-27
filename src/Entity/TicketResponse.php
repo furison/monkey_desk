@@ -30,8 +30,9 @@ class TicketResponse
     #[ORM\Column(type: Types::TEXT)]
     private ?string $body = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $submitter = null;
+    #[ORM\ManyToOne(targetEntity:User::class)]
+    #[ORM\JoinColumn(nullable: false, fieldName:'submitter')]
+    private User $submitter;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateSubmitted = null;
@@ -46,7 +47,7 @@ class TicketResponse
         return $this->ticket;
     }
 
-    public function setTicket(?Ticket $ticket): static
+    public function setTicket(?Ticket $ticket): self
     {
         $this->ticket = $ticket;
 
@@ -111,12 +112,12 @@ class TicketResponse
         return $this;
     }
 
-    public function getSubmitter(): ?string
+    public function getSubmitter(): User
     {
         return $this->submitter;
     }
 
-    public function setSubmitter(string $submitter): static
+    public function setSubmitter(User $submitter): static
     {
         $this->submitter = $submitter;
 

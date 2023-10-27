@@ -25,8 +25,9 @@ class Ticket
     #[ORM\Column(length: 255)]
     private ?string $subject = null;
 
-    #[ORM\Column]
-    private ?int $submitter_id = null;
+    #[ORM\ManyToOne(inversedBy: 'tickets')]
+    #[ORM\JoinColumn(nullable: false, fieldName:'submitter_id')]
+    private ?User $submitter = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $assigned_to = null;
@@ -86,14 +87,14 @@ class Ticket
         return $this;
     }
 
-    public function getSubmitterId(): ?int
+    public function getSubmitter(): ?User
     {
-        return $this->submitter_id;
+        return $this->submitter;
     }
 
-    public function setSubmitterId(int $submitter_id): self
+    public function setSubmitter(?User $submitter): self
     {
-        $this->submitter_id = $submitter_id;
+        $this->submitter = $submitter;
 
         return $this;
     }

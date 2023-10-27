@@ -20,7 +20,7 @@
             <td>{{ ticket.id }}</td>
             <td>{{ ticket.dateSubmitted|date }}</td>
             <td><a href="{{ path('app_ticket', {'id': ticket.id})}}">{{ ticket.subject }}</a></td>
-            <td>{{ ticket.submitterId }}</td>
+            <td>{{ ticket.submitter.fullname }}</td>
             <td>{{ ticket.assignedTo }}</td>
             <td>{{ ticket.status }}</td>
         </tr>
